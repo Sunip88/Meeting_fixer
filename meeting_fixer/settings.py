@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
 import os
+from locals import secret_key, db_pass, db_user, db_host, db_name
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -20,7 +21,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '5qmt4l75ww_3fdbu)fy_zmg%md+*kh(7&u(cp26g2&8aatizes'
+SECRET_KEY = secret_key
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -75,8 +76,11 @@ WSGI_APPLICATION = 'meeting_fixer.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'HOST': db_host,
+        'NAME': db_name,
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'USER': db_user,
+        'PASSWORD': db_pass,
     }
 }
 
